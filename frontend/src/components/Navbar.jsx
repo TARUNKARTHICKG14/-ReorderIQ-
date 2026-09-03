@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Activity, User, LogOut, ChevronDown, Shield, Radio } from 'lucide-react';
+import { Activity, User, LogOut } from 'lucide-react';
 
 export default function Navbar({ currentUser, onLogout }) {
   const navigate = useNavigate();
@@ -13,8 +13,9 @@ export default function Navbar({ currentUser, onLogout }) {
           <Activity className="w-5 h-5 animate-pulse" />
         </div>
         <div>
-          <h1 className="text-sm font-bold text-slate-100 flex items-center space-x-2">
-            <span>Probabilistic Smart Reorder Engine</span>
+          <h1 className="text-base font-bold text-slate-100 flex items-center space-x-2">
+            <span className="text-cyan-400 font-mono font-extrabold tracking-wider text-lg">-ReorderIQ-</span>
+            <span className="text-slate-400 text-xs font-normal hidden sm:inline">| Probabilistic Smart Reorder Engine</span>
             <span className="text-[10px] bg-cyan-950 text-cyan-400 border border-cyan-800 px-2 py-0.5 rounded-full font-mono font-bold">
               FIELD-READY MVP
             </span>
