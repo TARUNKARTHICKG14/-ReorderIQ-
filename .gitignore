@@ -1,0 +1,30 @@
+# Dependencies & Virtual Environments
+node_modules/
+venv/
+.venv/
+env/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Build Output & Vite
+dist/
+build/
+.vite/
+
+# Database & Cache
+*.sqlite3
+*.sqlite
+*.db
+.DS_Store
+
+# IDE & OS Files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Environment files
+.env
+.env.local
