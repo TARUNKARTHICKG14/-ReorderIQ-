@@ -6,6 +6,7 @@ from app.database.database import SessionLocal, engine, Base
 from app.database.seed_data import seed_database
 from app.models.component import Component
 from app.models.supplier import Supplier
+from app.models.demand import DemandHistory
 from app.simulation.probabilistic_policy import ProbabilisticPolicy
 from app.simulation.baseline import BaselinePolicy
 from app.simulation.monte_carlo import MonteCarloSimulator
@@ -44,9 +45,15 @@ def run_reproducible_experiments():
             if not supplier or comp.pack_size <= 0:
                 continue
 
-            # Demand parameters
-            demand_mean = 100.0
-            demand_std = 25.0
+            # Demand parameters (derived dynamically from DemandHistory records)
+            historical_demand = db.query(DemandHistory.demand_quantity).filter(DemandHistory.component_id == comp.component_id).all()
+            if not historical_demand:
+                demand_mean = 100.0
+                demand_std = 25.0
+            else:
+                demand_values = [h[0] for h in historical_demand]
+                demand_mean = float(np.mean(demand_values))
+                demand_std = float(np.std(demand_values))
 
             # 1. Fixed Baseline Policy
             base_pol = BaselinePolicy.calculate_policy(

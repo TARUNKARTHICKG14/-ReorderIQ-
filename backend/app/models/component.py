@@ -15,5 +15,6 @@ class Component(Base):
     pack_size = Column(Integer, nullable=False, default=100) # Variable pack size!
     current_inventory = Column(Integer, nullable=False, default=500)
     supplier_id = Column(String, ForeignKey("suppliers.supplier_id"), nullable=False)
+    branch_id = Column(String, ForeignKey("branches.branch_id"), nullable=True)
     created_at = Column(DateTime, default=datetime.utcnow)
     updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)

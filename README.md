@@ -144,9 +144,9 @@ docker compose up --build
 
 ### 7. Core Deliverables & Documentation
 
-- [docs/architecture.md](file:///Users/tarunkarthick/Collegeproject/docs/architecture.md): System design & component layer specification.
-- [docs/data-schema.md](file:///Users/tarunkarthick/Collegeproject/docs/data-schema.md): Entity schemas & versioned database structures.
-- [docs/user-flow.md](file:///Users/tarunkarthick/Collegeproject/docs/user-flow.md): End-to-end planner walkthrough.
-- [docs/risk-register.md](file:///Users/tarunkarthick/Collegeproject/docs/risk-register.md): Risk assessment & mitigation matrix.
-- [docs/validation.md](file:///Users/tarunkarthick/Collegeproject/docs/validation.md): Stakeholder validation interview logs.
-- [docs/experiment-report.md](file:///Users/tarunkarthick/Collegeproject/docs/experiment-report.md): Quantified benchmarking results & root-cause error analysis.
+- [docs/architecture.md](./docs/architecture.md): System design & component layer specification.
+- [docs/data-schema.md](./docs/data-schema.md): Entity schemas & versioned database structures.
+- [docs/user-flow.md](./docs/user-flow.md): End-to-end planner walkthrough.
+- [docs/risk-register.md](./docs/risk-register.md): Risk assessment & mitigation matrix.
+- [docs/validation.md](./docs/validation.md): Stakeholder validation interview logs.
+- [docs/experiment-report.md](./docs/experiment-report.md): Quantified benchmarking results & root-cause error analysis.

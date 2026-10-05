@@ -13,7 +13,8 @@ from app.api import (
     comparisons,
     audit,
     failure_cases,
-    tracking
+    tracking,
+    data_import
 )
 
 Base.metadata.create_all(bind=engine)
@@ -65,6 +66,7 @@ app.include_router(comparisons.router)
 app.include_router(audit.router)
 app.include_router(failure_cases.router)
 app.include_router(tracking.router)
+app.include_router(data_import.router)
 
 @app.get("/")
 def root():

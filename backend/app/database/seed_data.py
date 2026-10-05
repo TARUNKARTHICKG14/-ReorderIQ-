@@ -9,6 +9,7 @@ from app.models.demand import DemandHistory
 from app.models.purchase_order import PurchaseOrder
 from app.models.reorder_plan import ReorderPlan
 from app.models.audit_log import AuditLog
+from app.models.branch import Branch
 
 def seed_database():
     Base.metadata.drop_all(bind=engine)
@@ -50,6 +51,24 @@ def seed_database():
         
         db.commit()
 
+        # 1.5 Seed 3 Retail Branches
+        branches_data = [
+            ("BR-001", "Downtown Metro Store", "Downtown", "North"),
+            ("BR-002", "Suburban Plaza", "Suburbs", "West"),
+            ("BR-003", "Regional Distribution Hub", "Industrial Park", "East"),
+        ]
+        branches = []
+        for b in branches_data:
+            branch = Branch(
+                branch_id=b[0],
+                branch_name=b[1],
+                location=b[2],
+                region=b[3]
+            )
+            db.add(branch)
+            branches.append(branch)
+        db.commit()
+
         # 2. Seed 50 Components with Variable Pack Sizes
         categories = ["Electronics", "Hydraulics", "Fasteners", "Machined Parts", "Electrical"]
         pack_sizes = [10, 50, 100, 250, 500, 1000]
@@ -60,6 +79,7 @@ def seed_database():
             cat = categories[(i - 1) % len(categories)]
             sup = suppliers[(i - 1) % len(suppliers)]
             pack = pack_sizes[(i - 1) % len(pack_sizes)]
+            branch = branches[(i - 1) % len(branches)]
             
             unit_c = round(random.uniform(15.0, 350.0), 2)
             hold_c = round(unit_c * 0.20, 2) # 20% annual holding cost rate
@@ -75,7 +95,8 @@ def seed_database():
                 order_cost=150.0,
                 pack_size=pack,
                 current_inventory=random.randint(200, 1500),
-                supplier_id=sup.supplier_id
+                supplier_id=sup.supplier_id,
+                branch_id=branch.branch_id
             )
             db.add(comp)
             components.append(comp)
@@ -143,7 +164,7 @@ def seed_database():
             db.add(audit)
             db.commit()
 
-        print("Database seeding completed successfully! 50 components, 10 suppliers, 365-day demand history created.")
+        print("Database seeding completed successfully! Synthesized Demo Set: 50 components, 10 suppliers, 3 retail branches, and 365-day demand history created.")
 
     except Exception as e:
         db.rollback()
